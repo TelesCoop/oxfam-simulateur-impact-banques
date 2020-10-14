@@ -52,7 +52,7 @@
     <div style="text-align: center">
       <button id='screen2-confirm'
               class="btn btn-b"
-              onclick="checkValuesAreValid() && updateTemplate(3) && showScreen(3)"
+              onclick="goToScreen3()"
               style="margin-top: 30px">
         OK
       </button>
@@ -156,6 +156,24 @@
       );
 
       return true;
+    }
+    function sendNewEntry() {
+      function reqListener () {
+        console.log('### response sent', this, this.responseText);
+      }
+      var xhr = new XMLHttpRequest();
+      xhr.onload = reqListener;
+      xhr.open("get", "/entry", true);
+      xhr.send();
+    }
+
+    function goToScreen3() {
+      if (!checkValuesAreValid()) {
+        return false;
+      }
+      updateTemplate(3);
+      sendNewEntry();
+      showScreen(3);
     }
 
     // executes after html load
