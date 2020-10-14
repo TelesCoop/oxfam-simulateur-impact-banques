@@ -1,5 +1,7 @@
 ########### COMMON
 .idea
+# Mac
+.DS_Store
 # Environments
 .env
 .venv

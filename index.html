@@ -8,10 +8,161 @@
   <script src="js/tmpl.min.js"></script>
 </head>
 <body>
-  <div style="margin: auto; margin-top: 10px; border: 2px solid black; height: 400px">
+  <div style="margin: auto; margin-top: 10px; border: 2px solid black; height: 400px; width: 600px;">
     <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+      <div id="screen-1">
+        <!-- SCREEN 1 -->
+        <h1 style="text-align: center; font-size: 1.9em">
+          Je calcule l'impact de mon <br>
+          épargne en 10 secondes
+        </h1>
+        <div style="text-align: center; margin-top: 10px">
+          <button class="btn btn-b" onclick="showScreen(2)">
+            démarrer
+          </button>
+        </div>
+      </div>
 
+      <!-- SCREEN 2 -->
+      <div id="screen-2" style="display: none;"></div>
+
+      <!-- SCREEN 3 -->
+      <div id="screen-3" style="display: none;"></div>
     </div>
   </div>
+
+  <!-- TEMPLATE SCREEN 2 -->
+  <script type="text/x-tmpl" id="tmpl-screen-2" style="display: none;">
+    <div>
+      <label for="amount">
+        <h2>Montant de mon épargne</h2>
+      </label> <br>
+        <input type="text" id="savingsAmount" class="smooth" placeholder="100 000"  oninput="checkValuesAreValid()"/><span class="addon">€</span>
+    </div>
+    <div style="margin-top: 20px">
+      <label for="amount">
+        <h2>Ma banque</h2>
+      </label> <br>
+      <select name="bank" id="bank" oninput="checkValuesAreValid()">
+        {% for (var i=0; i<o.banks.length; i++) { %}
+            <option value="{%=i%}">{%=o.banks[i][0]%}</option>
+        {% } %}
+      </select>
+    </div>
+    <div style="text-align: center">
+      <button id='screen2-confirm'
+              class="btn btn-b"
+              onclick="checkValuesAreValid() && updateTemplate(3) && showScreen(3)"
+              style="margin-top: 30px">
+        OK
+      </button>
+    </div>
+  </script>
+
+  <!-- TEMPLATE SCREEN 3 -->
+  <script type="text/x-tmpl" id="tmpl-screen-3" style="display: none;">
+    <h1 style="text-align: center; font-size: 1.9em">
+      Mon impact : {%=o.co2Impact%}
+    </h1>
+    <div style="text-align: center">
+      <button class="btn btn-sm" onclick="showScreen(2)">
+        retour
+      </button>
+    </div>
+  </script>
+
+  <script type="application/javascript">
+    // a list of [name, impactCoeff], where impactCoeff in tons Co2eq/€
+    var BANKS = [
+      ['Crédit Cooopératif', 0.23],
+      ['Société Générale', 0.23],
+      ['BNP Paribas', 0.23],
+      ["Caisse d'Épargne", 0.23],
+      ['Crédit Agricole', 0.23],
+    ];
+    var bankName = '';
+    var co2Impact = 0; // in 0.01.tonnes
+    var savingsAmount = 0; // in €
+    var bankCoeff = null;
+
+    function showElement(divId) {
+      document.getElementById(divId).style.display = 'block';
+    }
+    function hideElement(divId) {
+      document.getElementById(divId).style.display = 'none';
+    }
+    function showScreen(screenId){
+      hideElement('screen-1');
+      hideElement('screen-2');
+      hideElement('screen-3');
+      showElement('screen-' + screenId);
+    }
+    function areValuesValid(){
+      return !!co2Impact;
+    }
+    function checkValuesAreValid() {
+      console.log("### check values are valid");
+      computeValues();
+      var isValid = areValuesValid();
+      var confirmBtn = document.getElementById('screen2-confirm');
+      confirmBtn.disabled = !isValid;
+      if (isValid) {
+        confirmBtn.classList.remove('disabled');
+      } else {
+        confirmBtn.classList.add('disabled');
+      }
+
+      return isValid;
+    }
+
+    function computeValues(){
+      console.log("### compute values");
+      savingsAmount = document.getElementById('savingsAmount').value;
+      var bankId = parseInt(document.getElementById('bank').value);
+      if (bankId == null) {
+        bankName = '';
+        bankCoeff = null;
+      } else {
+        var bank = BANKS[bankId];
+        bankName = bank[0];
+        bankCoeff = bank[1];
+      }
+      savingsAmount = document.getElementById('savingsAmount').value;
+      if (savingsAmount) {
+        savingsAmount = parseFloat(savingsAmount);
+      }
+      if (savingsAmount && bankCoeff) {
+        co2Impact = Math.round(savingsAmount * bankCoeff * 100);
+      } else {
+        co2Impact = null;
+      }
+
+      console.log("### compute values", bankName, bankCoeff, savingsAmount, co2Impact);
+    }
+
+    function updateTemplate(screenId) {
+      var data = {
+        banks: BANKS,
+        bankName: bankName,
+        co2Impact: co2Impact,
+      };
+
+      console.log('### update template', screenId, data);
+      document.getElementById('screen-' + screenId).innerHTML = tmpl(
+        'tmpl-screen-' + screenId, data
+      );
+      document.getElementById('screen-' + screenId).innerHTML = tmpl(
+        'tmpl-screen-' + screenId, data
+      );
+
+      return true;
+    }
+
+    // executes after html load
+    (function() {
+      updateTemplate(2);
+      checkValuesAreValid();
+    })();
+  </script>
 </body>
 </html>
