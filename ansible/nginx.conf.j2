@@ -6,8 +6,8 @@ server {
 
     server_name {{ public_hostname }};
 
-    access_log /var/log/nginx/access_{{ public_hostname.replace('.', '_') }}.log;
-    error_log /var/log/nginx/error_{{ public_hostname.replace('.', '_') }}.log;
+    access_log {{ logs_base_path }}/access_impact_banques.log;
+    error_log {{ logs_base_path }}/error_impact_banques.log;
 
     # http://stackoverflow.com/questions/15238506/djangos-suspiciousoperation-invalid-http-host-header
     # Deny illegal Host headers
