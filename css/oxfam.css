@@ -9,7 +9,7 @@
   font-style: normal;
   font-display: swap;
 }
-.btn.btn-b.disabled{
+.btn.btn-b.disabled, .confirmBtn.disabled{
   background: #9EBA64;
   color: #eaeaea;
 }
@@ -22,7 +22,8 @@ body, div, button, input{
   font-family: "Lato", Arial, sans-serif;
 }
 .result{
-  color: #009645;
+  color: #009a3e;
+  font-size: 1.5em;
 }
 .resultAmount {
   font-size: 1.4em;
@@ -32,7 +33,7 @@ body, div, button, input{
   transition: opacity 0.2s ease-in-out;
 }
 a{
-  color: #009645;
+  color: #009a3e;
 }
 .headline{
   padding-bottom: 10px;
@@ -40,4 +41,30 @@ a{
   font-size: 40px;
   color: #04662a;
   text-align: center;
+}
+h2 {
+  font-size: 1.7em;
+  margin-bottom: 0.2em;
+}
+#savingsAmount::placeholder{
+  color: lightgray;
+}
+.confirmBtn{
+    /* font-family: "OxfamTSTARPRO-Bold", sans-serif; */
+    font-size: 25px;
+    color: #ffffff;
+    background-color: #009a3e;
+    font-weight: normal;
+    border: 1px solid transparent;
+    padding: .375rem 1rem;
+    border-radius: 0;
+}
+.confirmBtn:active{
+  background-color: #000;
+}
+body{
+  background-color: #F1F1F1;
+}
+.label-container{
+  margin-bottom: 15px;
 }

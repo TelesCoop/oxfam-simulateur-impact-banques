@@ -15,7 +15,6 @@
     <div style="display: flex; align-items: center; justify-content: center; min-height: inherit;">
       <!-- SCREEN 1 -->
       <div class='screen' id="screen-1">
-        <h1 class="headline">Mon empreinte carbone</h1>
         <h2 style="text-align: center; font-size: 1.9em">
           Je calcule l'impact de mon <br>
           épargne en 10 secondes
@@ -38,17 +37,27 @@
   <!-- TEMPLATE SCREEN 2 -->
   <script type="text/x-tmpl" id="tmpl-screen-2" style="display: none;">
     <div>
-      <h1 class="headline">Mon empreinte carbone</h1>
-      <label for="amount">
-        <h2>Montant de mon épargne</h2>
-      </label> <br>
-        <input type="text" id="savingsAmount" class="smooth" placeholder="100 000"  oninput="reformatAmount(); checkValuesAreValid()"/><span class="addon">€</span>
+      <h1 class="headline">Quelle est l’empreinte carbone de mon épargne ?</h1>
+      <p>
+        Evaluez l'empreinte carbone de votre épargne grâce à notre calculateur. <br>
+        Indiquez en euros le montant total de votre épargne, sélectionnez votre banque et découvrez votre empreinte.
+      </p>
+
+      <div class='label-container'>
+        <label for="savingsAmount">
+          <h2>Montant de mon épargne</h2>
+        </label>
+      </div>
+      <input type="text" id="savingsAmount" class="smooth" placeholder="30 000"  oninput="reformatAmount(); checkValuesAreValid()"/><span class="addon">€</span>
     </div>
     <div style="margin-top: 20px">
-      <label for="amount">
-        <h2>Ma banque</h2>
-      </label> <br>
+      <div class='label-container'>
+        <label for="bank">
+          <h2>Ma banque</h2>
+        </label>
+      </div>
       <select name="bank" id="bank" oninput="checkValuesAreValid()">
+        <option style="color: grey" value="">Sélectionnez votre banque</option>
         {% for (var i=0; i<o.banks.length; i++) { %}
             <option value="{%=i%}">{%=o.banks[i][0]%}</option>
         {% } %}
@@ -56,10 +65,10 @@
     </div>
     <div style="text-align: center">
       <button id='screen2-confirm'
-              class="btn btn-b"
+              class="confirmBtn"
               onclick="goToScreen3()"
               style="margin-top: 30px">
-        OK
+        JE CALCULE
       </button>
     </div>
   </script>
@@ -67,15 +76,15 @@
   <!-- TEMPLATE SCREEN 3 -->
   <script type="text/x-tmpl" id="tmpl-screen-3" style="display: none;">
     <h1 style="text-align: center; font-size: 1.9em">
-      Mon empreinte carbone
+      L’empreinte carbone de votre épargne est de
     </h1>
     <div style="text-align: center">
       <p class="result">
         <span class='resultAmount'>{%=o.co2ImpactShow%}</span> tonnes éqCO2 par an
       </p>
-      <p>
+      <div class="msg" style="margin-top: 35px; background: #dee4da; border-left: 5px solid #61A534;">
         A titre de comparaison, l'empreinte carbone moyenne annuelle d’un français est de <span class='resultAmount'>11,2</span> tonnes éqCO2 par an.
-      </p>
+      </div>
       <p>
         Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc maximus justo rhoncus dui mollis semper. Praesent porttitor quam enim, id sodales quam pellentesque in. Fusce elementum blandit fermentum. Duis quis sapien turpis. Praesent quis maximus leo, non viverra elit. Vestibulum magna odio, bibendum at orci ut, lacinia luctus ante. Integer iaculis eleifend pulvinar. Fusce feugiat nulla sit amet mauris scelerisque venenatis. Pellentesque ut mi nec sem scelerisque tincidunt.
       </p>
@@ -83,8 +92,8 @@
         <a href="https://www.oxfamfrance.org/" style="font-weight: 700">En savoir plus</a>.
       </p>
     </div>
-    <div style="text-align: center">
-      <button class="btn btn-sm" onclick="screenTransition(3, 2)">
+    <div style="text-align: center; margin-top: 30px">
+      <button class="confirmBtn" onclick="screenTransition(3, 2)">
         modifier
       </button>
     </div>
@@ -193,10 +202,10 @@
     }
 
     function computeValues(){
-      console.log("### compute values");
       savingsAmount = document.getElementById('savingsAmount').value;
-      var bankId = parseInt(document.getElementById('bank').value);
-      if (bankId == null) {
+      var bankId = parseInt(document.getElementById('bank').value || -1);
+      console.log("### compute values", bankId);
+      if (bankId == null || bankId === -1) {
         bankName = '';
         bankCoeff = null;
       } else {
