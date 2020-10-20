@@ -46,15 +46,23 @@
       loop:
         - js
         - css
+        - fonts
         - index.html
+        - ex-integration.html
 
     - name: Upload python script
       template:
         src: "../parse_logs/parse_logs.py"
         dest: "{{ script_path }}"
 
-    - name: "cron: run the script regularly"
+    - name: "Cron - parse logs regularly"
       cron:
         name: 'parse nginx logs and generate static file'
         minute: "32"
         job: "STATISTIC_PAGE_PATH={{ statistics_page }} python3 {{ script_path }}/parse_logs.py"
+
+    - name: Parse logs now
+      command:
+        cmd: "python3 {{ script_path }}/parse_logs.py"
+      environment:
+        STATISTIC_PAGE_PATH: "{{ statistics_page }}"

@@ -1,4 +1,43 @@
+@font-face {
+  font-family: "oxfam_global_headlineregular";
+  src: url("/fonts/oxfamglobalheadline-webfont.eot");
+  src: url("/fonts/oxfamglobalheadline-webfont.eot?#iefix") format("embedded-opentype"),
+      url("/fonts/oxfamglobalheadline-webfont.woff") format("woff"),
+      url("/fonts/oxfamglobalheadline-webfont.ttf") format("truetype"),
+      url("/fonts/oxfamglobalheadline-webfont.svg#oxfam_global_headlineregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 .btn.btn-b.disabled{
-  background: #88bb8d;
+  background: #9EBA64;
   color: #eaeaea;
+}
+h1,h2,h3{
+  font-weight: 700;
+  color: #61A534;
+}
+body, div, button, input{
+  font-weight: 400;
+  font-family: "Lato", Arial, sans-serif;
+}
+.result{
+  color: #009645;
+}
+.resultAmount {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+.screen{
+  transition: opacity 0.2s ease-in-out;
+}
+a{
+  color: #009645;
+}
+.headline{
+  padding-bottom: 10px;
+  font-family: "oxfam_global_headlineregular", Arial, sans-serif;
+  font-size: 40px;
+  color: #04662a;
+  text-align: center;
 }
