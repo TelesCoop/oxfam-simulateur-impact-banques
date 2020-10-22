@@ -10,8 +10,9 @@
   font-display: swap;
 }
 .btn.btn-b.disabled, .confirmBtn.disabled{
-  background: #9EBA64;
+  background: #b5b5b5;
   color: #eaeaea;
+  cursor: default;
 }
 h1,h2,h3{
   font-weight: 700;
@@ -47,7 +48,7 @@ h2 {
   margin-bottom: 0.2em;
 }
 #savingsAmount::placeholder{
-  color: lightgray;
+  color: #aaaaaa;
 }
 .confirmBtn{
     /* font-family: "OxfamTSTARPRO-Bold", sans-serif; */
@@ -58,6 +59,7 @@ h2 {
     border: 1px solid transparent;
     padding: .375rem 1rem;
     border-radius: 0;
+    cursor: pointer;
 }
 .confirmBtn:active{
   background-color: #000;

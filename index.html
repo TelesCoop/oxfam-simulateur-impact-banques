@@ -11,7 +11,7 @@
   <script src="js/tmpl.min.js"></script>
 </head>
 <body>
-  <div style="margin: auto; margin-top: 10px; min-height: 400px; max-width: 600px; padding: 20px;">
+  <div style="margin: auto; margin-top: 0; min-height: 400px; max-width: 600px; padding: 0;">
     <div style="display: flex; align-items: center; justify-content: center; min-height: inherit;">
       <!-- SCREEN 1 -->
       <div class='screen' id="screen-1">
@@ -122,11 +122,12 @@
     // a list of [name, impactCoeff], where impactCoeff in tons Co2eq/€
     var numbers = "0123456789".split('');
     var BANKS = [
-      ["Banque Populaire Caisse d'Épargne", 379],
+      ["Banque Populaire - Caisse d'Epargne ", 379],
       ["La Banque Postale", 353],
       ['Société Générale', 652],
       ['BNP Paribas', 601],
-      ['Crédit Agricole', 444],
+      ['Crédit Agricole - LCL', 444],
+      ['Crédit Mutuel - CIC', 379],
     ];
     var bankName = '';
     var co2Impact = 0; // in 0.01.tonnes
