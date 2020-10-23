@@ -16,6 +16,7 @@ server {
     }
 
     location =/entry {
+        add_header Access-Control-Allow-Origin https://www.oxfamfrance.org/;
         return 204;
     }
 
