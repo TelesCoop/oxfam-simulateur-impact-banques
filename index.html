@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
 <head>
   <meta charset="utf-8">
   <title>Oxfam - Empreinte carbone des banques</title>
-  <meta name="viewport" content="width=device-width, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="css/min.min.css">
   <link rel="stylesheet" href="css/oxfam.css">
   <link href='https://fonts.googleapis.com/css?family=Lato:400,400,400i,700,700i%7CMontserrat:700,400&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai,cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai' rel='stylesheet' type='text/css'>
   <script src="js/tmpl.min.js"></script>
 </head>
-<body>
-  <div style="margin: auto; margin-top: 0; min-height: 520px; max-width: 600px; padding: 0;">
+<body style="height: 100%">
+  <div style="margin: auto; margin-top: 0; min-height: 600px; max-width: 600px; padding: 0 8px; display: flex; align-items: center; height: 100%;">
     <div style="display: flex; align-items: center; justify-content: center; min-height: inherit;">
       <!-- SCREEN 1 -->
       <div class='screen' id="screen-1">
@@ -27,20 +27,23 @@
       </div>
 
       <!-- SCREEN 2 -->
-      <div class='screen' id="screen-2" style="display: none;"></div>
+      <div class='screen' id="screen-2" style="display: none; text-align: center;"></div>
 
       <!-- SCREEN 3 -->
-      <div class='screen' id="screen-3" style="display: none; opacity: 0;"></div>
+      <div class='screen' id="screen-3" style="display: none; opacity: 0; text-align: center;"></div>
     </div>
   </div>
 
   <!-- TEMPLATE SCREEN 2 -->
   <script type="text/x-tmpl" id="tmpl-screen-2" style="display: none;">
     <div>
-      <h1 class="headline">Quelle est l’empreinte carbone de mon épargne ?</h1>
+      <h1 class="headline">Quelle est l’empreinte carbone de mes comptes bancaires ?</h1>
       <p>
-        Evaluez l'empreinte carbone de votre épargne grâce à notre calculateur. <br>
-        Indiquez en euros le montant total de votre épargne, sélectionnez votre banque et découvrez votre empreinte.
+        Evaluez l’empreinte carbone de vos comptes bancaires grâce à notre calculateur.
+      </p>
+      <p>
+        Indiquez en euros le montant total de votre argent (comptes courants et comptes épargne),
+        sélectionnez votre banque et découvrez votre empreinte.
       </p>
 
       <div class='label-container'>
@@ -62,6 +65,9 @@
             <option value="{%=i%}">{%=o.banks[i][0]%}</option>
         {% } %}
       </select>
+      <p style="font-size: 0.9em; color: darkgrey">
+        Votre banque ne figure pas dans la liste ? Nous n’avons malheureusement pas de données suffisantes.
+      </p>
     </div>
     <div style="text-align: center">
       <button id='screen2-confirm'
@@ -75,26 +81,45 @@
 
   <!-- TEMPLATE SCREEN 3 -->
   <script type="text/x-tmpl" id="tmpl-screen-3" style="display: none;">
-    <h1 style="text-align: center; font-size: 1.9em">
-      L’empreinte carbone de votre épargne est de
+    <h1 style="text-align: center; font-size: 1.9em" id="resultTop">
+      L’empreinte carbone de votre argent est de
     </h1>
-    <div style="text-align: center">
-      <p class="result">
+    <div>
+      <p class="result" style="text-align: center">
         <span class='resultAmount'>{%=o.co2ImpactShow%}</span> tonnes éqCO2 par an
       </p>
       <div class="msg" style="margin-top: 35px; background: #dee4da; border-left: 5px solid #61A534;">
-        A titre de comparaison, l'empreinte carbone moyenne annuelle d’un français est de <span class='resultAmount'>11,2</span> tonnes éqCO2 par an.
+        A titre de comparaison, l’empreinte carbone annuelle d’un Français est de <span class='resultAmount'>11,2</span> tonnes éqCO2 par an.
       </div>
       <p>
-        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc maximus justo rhoncus dui mollis semper. Praesent porttitor quam enim, id sodales quam pellentesque in. Fusce elementum blandit fermentum. Duis quis sapien turpis. Praesent quis maximus leo, non viverra elit. Vestibulum magna odio, bibendum at orci ut, lacinia luctus ante. Integer iaculis eleifend pulvinar. Fusce feugiat nulla sit amet mauris scelerisque venenatis. Pellentesque ut mi nec sem scelerisque tincidunt.
+        De la même façon qu’une banque a une empreinte indirecte via ses financements et investissements,
+        notre argent en tant que cliente et client, en a également une.
       </p>
       <p>
-        <a href="https://www.oxfamfrance.org/" style="font-weight: 700">En savoir plus</a>.
+        <span style="font-weight: 700">
+          Notre dernier rapport sur l’empreinte carbone des banques révèle que notre argent
+          représente notre premier poste d’émissions CO2.
+        </span>
+        <br>
+        Malheureusement, le modèle actuel des banques empêche tout droit de regard sur notre
+        argent et l’utilisation qui en est faite.
+        <span style="font-weight: 700">
+          Notre argent a donc un impact social et
+          environnemental que nous ne pouvons pas vraiment maîtriser.
+        </span>
+      </p>
+      <p>
+        Il est urgent que les banques françaises enclenchent réellement leur transition
+        écologique. Et pour changer de logiciel,
+        <span style="font-weight: 700">
+          nous avons besoin d’une vraie régulation
+          de leurs activités, par le biais d’une intervention de l’Etat.
+        </span>
       </p>
     </div>
     <div style="text-align: center; margin-top: 30px">
       <button class="confirmBtn" onclick="screenTransition(3, 2)">
-        modifier
+        RETOUR
       </button>
     </div>
   </script>
@@ -110,13 +135,11 @@
     }
     function reformatAmount() {
       var amount = document.getElementById('savingsAmount').value;
-      console.log('### reformat amount, input=', amount);
       // only keep numbers
       amount = amount.split('').filter(function(letter){return numbers.indexOf(letter) != -1}).join('');
       // add spaces
       amount = addSpaces(amount);
       document.getElementById('savingsAmount').value = amount;
-      console.log('### reformat amount, output=', amount);
     }
 
     // a list of [name, impactCoeff], where impactCoeff in tons Co2eq/€
@@ -155,8 +178,13 @@
       setTimeout(function(){
         hideElement('screen-' + prevScreenId);
         showElement('screen-' + nextScreenId);
-        setTimeout(function(){screenOpacity(nextScreenId, 1);}, 200);
+        setTimeout(function(){
+          screenOpacity(nextScreenId, 1);
+          if (nextScreenId === 3) {
+            document.getElementById('resultTop').scrollIntoView();
+          }
         }, 200);
+      }, 200);
     }
     function areValuesValid(){
       return co2Impact != null;
@@ -171,8 +199,6 @@
       } else {
         confirmBtn.classList.add('disabled');
       }
-
-      console.log("### check values are valid", isValid);
 
       return isValid;
     }
@@ -205,7 +231,6 @@
     function computeValues(){
       savingsAmount = document.getElementById('savingsAmount').value;
       var bankId = parseInt(document.getElementById('bank').value || -1);
-      console.log("### compute values", bankId);
       if (bankId == null || bankId === -1) {
         bankName = '';
         bankCoeff = null;
@@ -224,8 +249,6 @@
         co2Impact = null;
       }
       co2ImpactShow = roundCo2Impact(co2Impact);
-
-      console.log("### compute values", bankName, bankCoeff, savingsAmount, co2Impact);
     }
 
     function updateTemplate(screenId) {
@@ -235,7 +258,6 @@
         co2ImpactShow: co2ImpactShow,
       };
 
-      console.log('### update template', screenId, data);
       document.getElementById('screen-' + screenId).innerHTML = tmpl(
         'tmpl-screen-' + screenId, data
       );

@@ -11,7 +11,7 @@
   remote_user: root
   handlers:
     - name: reload nginx
-      systemd:
+      service:
         name: nginx
         state: reloaded
 
@@ -20,7 +20,7 @@
       file:
         path: "{{ logs_base_path }}"
         state: directory
-        mode: 2755
+        mode: '755'
 
     - name: Copy nginx config
       template:

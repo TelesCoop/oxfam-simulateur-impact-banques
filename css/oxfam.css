@@ -23,7 +23,7 @@ body, div, button, input{
   font-family: "Lato", Arial, sans-serif;
 }
 .result{
-  color: #009a3e;
+  color: #04662a;
   font-size: 1.5em;
 }
 .resultAmount {
@@ -39,7 +39,7 @@ a{
 .headline{
   padding-bottom: 10px;
   font-family: "oxfam_global_headlineregular", Arial, sans-serif;
-  font-size: 40px;
+  font-size: 32px;
   color: #04662a;
   text-align: center;
 }
@@ -54,7 +54,7 @@ h2 {
     /* font-family: "OxfamTSTARPRO-Bold", sans-serif; */
     font-size: 25px;
     color: #ffffff;
-    background-color: #009a3e;
+    background-color: #04662a;
     font-weight: normal;
     border: 1px solid transparent;
     padding: .375rem 1rem;
