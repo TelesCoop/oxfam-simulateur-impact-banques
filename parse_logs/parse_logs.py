@@ -81,6 +81,8 @@ def build_data():
     home_counter = Counter()
     entry_counter = Counter()
     for line in iterate_files():
+        if not line:
+            continue
         if line["path"] == "/entry":
             entry_counter[line["ip"]] += 1
         elif line["path"] == "/":
