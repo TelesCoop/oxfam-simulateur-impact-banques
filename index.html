@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="height: 100%">
+
 <head>
   <meta charset="utf-8">
   <title>Oxfam - Empreinte carbone des banques</title>
@@ -7,11 +8,15 @@
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="css/min.min.css">
   <link rel="stylesheet" href="css/oxfam.css">
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,400,400i,700,700i%7CMontserrat:700,400&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai,cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai' rel='stylesheet' type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Lato:400,400,400i,700,700i%7CMontserrat:700,400&subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai,cyrillic,cyrillic-ext,devanagari,greek,greek-ext,khmer,latin,latin-ext,vietnamese,hebrew,arabic,bengali,gujarati,tamil,telugu,thai'
+    rel='stylesheet' type='text/css'>
   <script src="js/tmpl.min.js"></script>
 </head>
+
 <body style="height: 100%">
-  <div style="margin: auto; margin-top: 0; min-height: 600px; max-width: 600px; padding: 0 8px; display: flex; align-items: center; height: 100%;">
+  <div
+    style="margin: auto; margin-top: 0; min-height: 600px; max-width: 600px; padding: 0 8px; display: flex; align-items: center; height: 100%;">
     <div style="display: flex; align-items: center; justify-content: center; min-height: inherit;">
       <!-- SCREEN 1 -->
       <div class='screen' id="screen-1">
@@ -89,36 +94,27 @@
         <span class='resultAmount'>{%=o.co2ImpactShow%}</span> tonnes éqCO2 par an
       </p>
       <div class="msg" style="margin-top: 35px; background: #dee4da; border-left: 5px solid #61A534;">
-        A titre de comparaison, l’empreinte carbone annuelle d’un Français est de <span class='resultAmount'>11,2</span> tonnes éqCO2 par an.
+        A titre de comparaison, l’empreinte carbone annuelle d’un Français est de <span class='resultAmount'>8,9</span> tonnes éqCO2 par an en 2021 (selon le Ministère de la Transition Ecologique).
       </div>
       <p style="color: #737373; margin-top: 5px; font-size: 0.85em;">
-        Cette moyenne correspond à notre empreinte carbone directe (logement, consommation, transports…).
-        Les comptes bancaires ne sont pas inclus. L’empreinte carbone de notre argent s’ajoute donc à
-        cette moyenne annuelle !
+        Cette moyenne correspond à notre empreinte carbone « directe » (logement, consommation, transports…). Les comptes bancaires ne sont pas inclus, car ils correspondent à une autre façon de calculer l’empreinte carbone, via les investissements. L’empreinte carbone de notre argent est donc une autre façon de calculer une répartition des émissions de CO2eq. Evidemment, si l’empreinte carbone de notre argent est additionnée à notre empreinte carbone « de consommation » alors on arriverait à des doubles comptes, c’est-à-dire à une empreinte supérieure aux émissions de CO2eq mondiales.
       </p>
       <p>
-        De la même façon qu’une banque a une empreinte indirecte via ses financements et investissements,
-        notre argent en tant que cliente et client, en a également une.
+        De la même façon qu’une banque a une empreinte indirecte via ses financements et investissements, notre argent en tant que cliente et client, en a également une.
+      </p>
+      <p style="font-weight: 700">
+        Nos rapports sur l’empreinte carbone des banques révèlent que notre argent représente un poste important d’émissions CO2.
       </p>
       <p>
+        Malheureusement, le modèle actuel des banques empêche tout droit de regard sur notre argent et l’utilisation qui en est faite.
         <span style="font-weight: 700">
-          Notre dernier rapport sur l’empreinte carbone des banques révèle que notre argent
-          représente notre premier poste d’émissions CO2.
-        </span>
-        <br>
-        Malheureusement, le modèle actuel des banques empêche tout droit de regard sur notre
-        argent et l’utilisation qui en est faite.
-        <span style="font-weight: 700">
-          Notre argent a donc un impact social et
-          environnemental que nous ne pouvons pas vraiment maîtriser.
+          Notre argent a donc un impact social et environnemental que nous ne pouvons pas vraiment maîtriser.
         </span>
       </p>
       <p>
-        Il est urgent que les banques françaises enclenchent réellement leur transition
-        écologique. Et pour changer de logiciel,
+        Il est urgent que les banques françaises enclenchent réellement leur transition écologique. Et pour changer de logiciel,
         <span style="font-weight: 700">
-          nous avons besoin d’une vraie régulation
-          de leurs activités, par le biais d’une intervention de l’Etat.
+          nous avons besoin d’une vraie régulation de leurs activités, par le biais d’une intervention de l’Etat.
         </span>
       </p>
     </div>
@@ -141,7 +137,7 @@
     function reformatAmount() {
       var amount = document.getElementById('savingsAmount').value;
       // only keep numbers
-      amount = amount.split('').filter(function(letter){return numbers.indexOf(letter) != -1}).join('');
+      amount = amount.split('').filter(function (letter) { return numbers.indexOf(letter) != -1; }).join('');
       // add spaces
       amount = addSpaces(amount);
       document.getElementById('savingsAmount').value = amount;
@@ -169,7 +165,7 @@
     function hideElement(divId) {
       document.getElementById(divId).style.display = 'none';
     }
-    function showScreen(screenId){
+    function showScreen(screenId) {
       hideElement('screen-1');
       hideElement('screen-2');
       hideElement('screen-3');
@@ -178,12 +174,12 @@
     function screenOpacity(screenId, opacity) {
       document.getElementById('screen-' + screenId).style.opacity = opacity;
     }
-    function screenTransition(prevScreenId, nextScreenId){
+    function screenTransition(prevScreenId, nextScreenId) {
       screenOpacity(prevScreenId, 0);
-      setTimeout(function(){
+      setTimeout(function () {
         hideElement('screen-' + prevScreenId);
         showElement('screen-' + nextScreenId);
-        setTimeout(function(){
+        setTimeout(function () {
           screenOpacity(nextScreenId, 1);
           if (nextScreenId === 3) {
             document.getElementById('resultTop').scrollIntoView();
@@ -191,7 +187,7 @@
         }, 200);
       }, 200);
     }
-    function areValuesValid(){
+    function areValuesValid() {
       return co2Impact != null;
     }
     function checkValuesAreValid() {
@@ -208,7 +204,7 @@
       return isValid;
     }
 
-    function roundCo2Impact(value){
+    function roundCo2Impact(value) {
       if (value == null) {
         return;
       }
@@ -233,7 +229,7 @@
       return value.toPrecision(2);
     }
 
-    function computeValues(){
+    function computeValues() {
       savingsAmount = document.getElementById('savingsAmount').value;
       var bankId = parseInt(document.getElementById('bank').value || -1);
       if (bankId == null || bankId === -1) {
@@ -273,7 +269,7 @@
       return true;
     }
     function sendNewEntry() {
-      function reqListener () {
+      function reqListener() {
         console.log('### response sent', this, this.responseText);
       }
       var xhr = new XMLHttpRequest();
@@ -292,7 +288,7 @@
     }
 
     // executes after html load
-    (function() {
+    (function () {
       updateTemplate(2);
       showScreen(2);
       screenTransition(2, 2);
@@ -300,4 +296,5 @@
     })();
   </script>
 </body>
+
 </html>

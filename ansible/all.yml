@@ -55,14 +55,18 @@
         src: "../parse_logs/parse_logs.py"
         dest: "{{ script_path }}"
 
-    - name: "Cron - parse logs regularly"
+    - name: "Cron - parse logs regularly for banques"
       cron:
-        name: 'parse nginx logs and generate static file'
+        name: 'parse nginx logs and generate static file for banques'
         minute: "32"
         job: "STATISTIC_PAGE_PATH={{ statistics_page }} python3 {{ script_path }}/parse_logs.py"
+      become: true
+      become_user: root
 
     - name: Parse logs now
       command:
         cmd: "python3 {{ script_path }}/parse_logs.py"
       environment:
         STATISTIC_PAGE_PATH: "{{ statistics_page }}"
+      become: true
+      become_user: root
