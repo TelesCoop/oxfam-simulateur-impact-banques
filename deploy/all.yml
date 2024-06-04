@@ -6,7 +6,7 @@
     - public_hostname: oxfam-impact-banques.telescoop.fr
     - project_slug: "oxfam-impact-banques"
     - static_path: /telescoop/oxfam-impact-banques/static
-    - script_path: /telescoop/oxfam-impact-banques/parse_logs
+    - script_path: /telescoop/oxfam-impact-banques/parse_logs.py
     - statistics_page: "{{ static_path }}/wjgtswwxcf.html"
   remote_user: root
   handlers:
@@ -59,13 +59,13 @@
       cron:
         name: 'parse nginx logs and generate static file for banques'
         minute: "32"
-        job: "STATISTIC_PAGE_PATH={{ statistics_page }} python3 {{ script_path }}/parse_logs.py"
+        job: "STATISTIC_PAGE_PATH={{ statistics_page }} python3 {{ script_path }}"
       become: true
       become_user: root
 
     - name: Parse logs now
       command:
-        cmd: "python3 {{ script_path }}/parse_logs.py"
+        cmd: "python3 {{ script_path }}"
       environment:
         STATISTIC_PAGE_PATH: "{{ statistics_page }}"
       become: true
